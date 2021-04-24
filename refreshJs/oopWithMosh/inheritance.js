@@ -1,7 +1,7 @@
 import Circle from './function.js';
 /*
 	Inheritance is one of the core concept of OOP
-	which enable an object to take on the proprety and methode
+	which enable an object to take on the propreties and methods
 	of another object
 
 	there is two type of inheritance:
@@ -55,10 +55,10 @@ console.log(descriptor)
 /*
 	How to implement inheritance?
 	Every constructor has a prototype property wich will be use to create all the object
-	from belong to that constructor.
+	belong to that constructor.
 
-	because JS is a dynamique language. We can use that to add a property to a prototype of
-	a constructor.
+	because JS is a dynamique language. We can use tha mecanism
+	to add a property to a prototype of a constructor.
 
 
 	Ex:
@@ -81,7 +81,7 @@ Circle.prototype.move = function () {
 /*
 What is Method overwriting?
 	it's consist to change a signature of a method
-Ex: Because every Object in JS inherite of the Object Base
+Ex: Because every Object in JS inherit of the Object Base
 wich has toString method we can use the prototypical inheritance to overewrite
 the toString method
 */
@@ -92,6 +92,7 @@ Circle.prototype.toString = function() {
 console.log(new Circle(20).toString());
 
 //We can access instance member from a prototype member
+//Also we can access prototype member from instance member
 
 Circle.prototype.color = function(color) {
 	console.log(`this circle has a ${color} color`);
@@ -99,5 +100,23 @@ Circle.prototype.color = function(color) {
 	//accessing an instance member
 	this.draw();
 }
-console.log(new Circle(20).color('red'));
 
+let circle3 = new Circle(20);
+console.log(circle3.color('red'));
+
+/*
+listing the members of an object
+*/
+
+//the Object.keys return only instance members
+console.log(Object.keys(circle3));
+
+//to return the instance and prototype members we use
+//the for in loop
+
+for (let key in circle3)
+	console.log(key)
+
+//this return the hierachy of an object it's replace __proto__
+console.log(Object.getPrototypeOf(circle3))
+console.log(circle3.__proto__)

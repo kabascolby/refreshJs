@@ -76,4 +76,4 @@ function Circle3(radius) {
 }
 
 console.log(circle);
-console.log(T = new Circle3(14));
+console.log(new Circle3(14));
