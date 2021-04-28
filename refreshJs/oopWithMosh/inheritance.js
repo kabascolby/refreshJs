@@ -79,7 +79,7 @@ Circle.prototype.move = function () {
 }
 
 /*
-What is Method overwriting?
+What is Method overriding?
 	it's consist to change a signature of a method
 Ex: Because every Object in JS inherit of the Object Base
 wich has toString method we can use the prototypical inheritance to overewrite
@@ -119,4 +119,33 @@ for (let key in circle3)
 
 //this return the hierachy of an object it's replace __proto__
 console.log(Object.getPrototypeOf(circle3))
-console.log(circle3.__proto__)
+console.log(circle3.__proto__ )
+
+/*
+What is the use case of inheritance?
+	One of the core concept of inheritance is to avoid
+	code dupplication.
+	if we have two or multiple object using the same functionality
+	it's will be better to create another object to be parent of those objects
+	ex: circle and square need to be duplicated
+	We can use a third object called shape and make circle and square to inherit
+	from shape.
+*/
+
+function Shape() {
+}
+
+Shape.prototype.duplicate = function () {
+	console.log(this.name + 'is duplicated');
+}
+
+const shape = new Shape();
+// console.log(shape)
+
+//implementation of inheritance
+//this has to be before creating a new object
+Circle.prototype = Object.create(Shape.prototype);
+
+const inheritCircle = new Circle(34);
+
+console.log(inheritCircle);

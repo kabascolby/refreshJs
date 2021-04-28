@@ -1,10 +1,4 @@
 // object litteral
-/*
-	Oject litteral syntax is not a good way to duplicate an object
-	if that object has one more methods
-	We use object Litteral in a case an object does not
-	have a behavior(method).
- */
 
 const circle = {
 	radius: 1,
@@ -51,4 +45,3 @@ export default function Circle(radius) {
 const anotherCircle = new Circle(9);
 
 console.log(anotherCircle);
-
