@@ -136,7 +136,8 @@ function Shape() {
 }
 
 Shape.prototype.duplicate = function () {
-	console.log(this.name + 'is duplicated');
+	console.log('this -------->', this)
+	return Object.getPrototypeOf(this).constructor.name + ' is duplicated';
 }
 
 const shape = new Shape();
@@ -148,4 +149,4 @@ Circle.prototype = Object.create(Shape.prototype);
 
 const inheritCircle = new Circle(34);
 
-console.log(inheritCircle);
+console.log(inheritCircle.duplicate());
