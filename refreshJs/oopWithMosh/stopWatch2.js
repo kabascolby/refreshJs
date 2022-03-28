@@ -1,51 +1,52 @@
-'use strict'
+"use strict";
 
-function StopWatch () {
+function StopWatch2() {
 	Object.defineProperties(this, {
-		running: {
-			value: 0,
-			enumerable:false,
-		},
-
 		startTime: {
+			configurable: false,
+			enumrable: false,
+			writable: true,
 			value: 0,
-			enumerable:false,
 		},
 
-		isStop: {
-			value: false,
-			enumerable:false,
+		endTime: {
+			configurable: false,
+			enumrable: false,
+			writable: false,
+			value: 0,
 		},
-	})
 
-	this.reset = function() {
-		[this.duration, this.startTime, this.isStop] = [0, 0, false];
-	}
+		running: {
+			configurable: false,
+			enumrable: false,
+			writable: true,
+			value: 0,
+		},
+	});
 
-	Object.defineProperty(this, 'duration', {
-		get: function() {
-			return this.running;
-		}
-	})
-
+	let getDuration = (time) => {
+		return Math.floor((time - this.startTime) / 1000);
+	};
+	Object.defineProperty(this, "duration", {
+		get: () =>
+			this.running ? getDuration(Date.now()) : getDuration(this.endTime),
+	});
 }
 
-StopWatch.prototype.stop = function () {
-	if(!isStop)
-		throw new Error('StopWatch already Stoped');
-	this.running += Math.floor((Date.now() - this.startTime) / 1000);;
-	tjis.startTime = 0;
-	this.isStop = false;
-}
-
-StopWatch.prototype.reset = function() {
-	[this.duration, this.startTime, this.isStop] = [0, 0, false];
-}
-StopWatch.prototype.start = function () {
-	if(this.isStop)
-		throw new Error('StopWatch already Started');
-	this.isStop = true;
+StopWatch2.prototype.start = function () {
+	if (this.running) throw new Error("Time already started");
 	this.startTime = Date.now();
-}
+	this.running = 1;
+};
 
-const swt = new StopWatch();
+StopWatch2.prototype.stop = function () {
+	if (!this.running) throw new Error("StopWatch already stopped");
+	this.endTime = Date.now();
+	this.running = 0;
+};
+
+StopWatch2.prototype.reset = function () {
+	this.running = 0;
+	this.startTime = 0;
+};
+let mytimer = new StopWatch2();

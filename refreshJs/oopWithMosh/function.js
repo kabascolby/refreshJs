@@ -1,10 +1,17 @@
-// object litteral
+  // object litteral
+  /*
+  	An object in JS is a collection of "key" "value" pair
+
+	In OOP there is a difference between property and methode
+	a property is use to hold a value;
+	a methode is use to define some logic
+   */
 
 const circle = {
 	radius: 1,
 	location: {
 		x: 1,
-		y: 1
+		y: 2
 	},
 	draw: function() {
 		console.log('draw');

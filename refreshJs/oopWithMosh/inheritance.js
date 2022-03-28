@@ -146,6 +146,7 @@ const shape = new Shape();
 //implementation of inheritance
 //this has to be before creating a new object
 Circle.prototype = Object.create(Shape.prototype);
+Circle.prototype.constructor = Circle;
 
 const inheritCircle = new Circle(34);
 
